@@ -1,0 +1,16 @@
+.req{
+    color: red;
+}
+
+.title, h1 {
+    font-weight: bold;
+}
+
+.button {
+    background-color: #1aa3ff;
+}
+
+#box{
+	width:390px;
+	height:90px;
+}

@@ -7,7 +7,10 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+from app import mail
+from flask_mail import Message
 
+from app.forms import ContactForm
 
 ###
 # Routing for your application.
@@ -23,6 +26,21 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+    
+@app.route('/contact', methods=('GET', 'POST'))
+def contact():
+    form = ContactForm()
+    if form.validate_on_submit() and  request.method == 'POST':
+        msg = Message(form.subject.data, sender=(form.name.data, form.email.data), recipients=[
+            "de659e2bc9-8793d3@inbox.mailtrap.io"
+        ])
+        msg.body=form.message.data
+        mail.send(msg)
+        return redirect(url_for('home', mailed=True))
+        
+    elif request.method == 'POST':
+        return render_template("contact.html", form=form, invalid=True)
+    return render_template("contact.html", form=form, invalid=False)
 
 
 ###
@@ -52,7 +70,7 @@ def add_header(response):
 def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
-
+    
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port="8080")
