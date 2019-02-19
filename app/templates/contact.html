@@ -20,27 +20,27 @@
   <form method="POST" action="/contact">
 
     {{ form.csrf_token }}
-    {{ form.name.label (class_="title")  }}<span class='req'>(Required)</span>
+    {{ form.name.label (class_="header")  }} <span class='req'>(Required)</span>
     <p> Please enter your full name </p>
     {{ form.name }}
     <br>
     <br>
-    {{ form.email.label (class_="title") }} <span class='req'>(Required)</span>
+    {{ form.email.label (class_="header") }} <span class='req'>(Required)</span>
     <p> Please enter your email address</p>
     {{ form.email }}
     <br>
     <br>
-    {{ form.subject.label (class_="title") }} <span class='req'>(Required)</span>
+    {{ form.subject.label (class_="header") }} <span class='req'>(Required)</span>
     <p> Please enter the subject of your message</p>
     {{ form.subject }}
     <br>
     <br>
-    {{ form.message.label (class_="title") }} <span class='req'>(Required)</span>
+    {{ form.message.label (class_="header") }} <span class='req'>(Required)</span>
     <p> Please enter the message you would like to send</p>
     {{ form.message (id="box")  }}
     <br>
     <br>
-    <input type="submit" value="Send" class='button'/>
+    <button type="submit"  class='button'>Send</button>
    
   </form>
 

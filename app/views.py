@@ -32,15 +32,17 @@ def contact():
     form = ContactForm()
     if form.validate_on_submit() and  request.method == 'POST':
         msg = Message(form.subject.data, sender=(form.name.data, form.email.data), recipients=[
-            "de659e2bc9-8793d3@inbox.mailtrap.io"
+            "de659e2bc9-812d47@inbox.mailtrap.io"
         ])
         msg.body=form.message.data
         mail.send(msg)
+        flash('Message was sucessfully sent')
         return redirect(url_for('home', mailed=True))
         
     elif request.method == 'POST':
         return render_template("contact.html", form=form, invalid=True)
     return render_template("contact.html", form=form, invalid=False)
+
 
 
 ###
